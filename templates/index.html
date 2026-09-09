@@ -1,0 +1,91 @@
+<!-- Author: Maharshi Soni | License: MIT -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAG QA Knowledge Base</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>RAG QA Knowledge Base</h1>
+            <p class="subtitle">Ask questions about your test documentation, runbooks, and test plans</p>
+            <div class="stats">
+                <span class="stat-badge">{{ doc_count }} chunks indexed</span>
+                <span class="stat-badge">{{ sources|length }} documents loaded</span>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-grid">
+            <!-- Question Panel -->
+            <section class="panel question-panel">
+                <h2>Ask a Question</h2>
+                <form id="question-form">
+                    <textarea
+                        id="question-input"
+                        placeholder="e.g. What is the regression suite for the payment module?"
+                        rows="3"
+                    ></textarea>
+                    <button type="submit" id="ask-btn">Ask</button>
+                </form>
+
+                <!-- Answer Display -->
+                <div id="answer-section" class="answer-section hidden">
+                    <h3>Answer</h3>
+                    <div id="confidence-bar" class="confidence-bar">
+                        <div class="confidence-fill" id="confidence-fill"></div>
+                        <span class="confidence-label" id="confidence-label"></span>
+                    </div>
+                    <div id="answer-text" class="answer-text"></div>
+
+                    <h3>Sources</h3>
+                    <div id="sources-list" class="sources-list"></div>
+                </div>
+
+                <div id="loading" class="loading hidden">
+                    <div class="spinner"></div>
+                    <span>Searching knowledge base...</span>
+                </div>
+            </section>
+
+            <!-- Upload / Sources Panel -->
+            <section class="panel upload-panel">
+                <h2>Upload Documents</h2>
+                <form id="upload-form">
+                    <div class="upload-area" id="upload-area">
+                        <p>Drag &amp; drop a .txt or .md file here</p>
+                        <p class="upload-hint">or click to browse</p>
+                        <input type="file" id="file-input" accept=".txt,.md" hidden>
+                    </div>
+                    <button type="submit" id="upload-btn" disabled>Upload</button>
+                </form>
+                <div id="upload-status" class="upload-status hidden"></div>
+
+                <h2>Indexed Sources</h2>
+                <ul id="sources-sidebar" class="sources-sidebar">
+                    {% for source in sources %}
+                    <li>{{ source }}</li>
+                    {% endfor %}
+                    {% if not sources %}
+                    <li class="empty">No documents indexed yet.</li>
+                    {% endif %}
+                </ul>
+
+                <div class="actions">
+                    <button id="reindex-btn" class="btn-secondary">Re-index All</button>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p>RAG QA Knowledge Base &middot; Built by Maharshi Soni &middot; MIT License</p>
+        </footer>
+    </div>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>
