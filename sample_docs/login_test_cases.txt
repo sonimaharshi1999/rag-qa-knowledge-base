@@ -1,0 +1,127 @@
+Login Module Test Cases
+=======================
+
+Module: User Authentication
+Version: 3.2
+Last Updated: 2026-08-15
+Author: QA Team
+
+Test Case: TC-LOGIN-001
+Title: Successful login with valid credentials
+Precondition: User account exists with email user@example.com
+Steps:
+  1. Navigate to /login
+  2. Enter email: user@example.com
+  3. Enter password: ValidPass123!
+  4. Click "Sign In" button
+Expected Result: User redirected to dashboard, welcome message displayed, session cookie set
+Priority: P0
+Automation: Automated (test_login.py::test_valid_login)
+
+Test Case: TC-LOGIN-002
+Title: Login failure with incorrect password
+Precondition: User account exists
+Steps:
+  1. Navigate to /login
+  2. Enter valid email
+  3. Enter incorrect password
+  4. Click "Sign In" button
+Expected Result: Error message "Invalid email or password" displayed, user remains on login page
+Priority: P0
+Automation: Automated (test_login.py::test_invalid_password)
+
+Test Case: TC-LOGIN-003
+Title: Login failure with non-existent email
+Precondition: None
+Steps:
+  1. Navigate to /login
+  2. Enter email that does not exist in the system
+  3. Enter any password
+  4. Click "Sign In" button
+Expected Result: Same error message as TC-LOGIN-002 (no information leakage)
+Priority: P1
+Automation: Automated
+
+Test Case: TC-LOGIN-004
+Title: Account lockout after 5 failed attempts
+Precondition: User account exists, zero failed attempts
+Steps:
+  1. Attempt login with wrong password 5 times
+  2. Attempt login with correct password on 6th try
+Expected Result: Account locked for 30 minutes, message "Account locked. Try again in 30 minutes."
+Priority: P0
+Automation: Automated
+
+Test Case: TC-LOGIN-005
+Title: Remember Me functionality
+Precondition: User account exists
+Steps:
+  1. Navigate to /login
+  2. Enter valid credentials
+  3. Check "Remember Me" checkbox
+  4. Click "Sign In"
+  5. Close browser completely
+  6. Reopen browser and navigate to the application
+Expected Result: User is still logged in, session persists for 30 days
+Priority: P2
+Automation: Manual
+
+Test Case: TC-LOGIN-006
+Title: Password reset flow
+Precondition: User account exists with verified email
+Steps:
+  1. Click "Forgot Password?" on login page
+  2. Enter registered email address
+  3. Click "Send Reset Link"
+  4. Open reset email (check within 5 minutes)
+  5. Click reset link
+  6. Enter new password meeting complexity requirements
+  7. Confirm new password
+  8. Submit
+Expected Result: Password updated, confirmation message shown, can login with new password
+Priority: P0
+Automation: Partially automated (email verification is manual)
+
+Test Case: TC-LOGIN-007
+Title: Two-factor authentication (2FA)
+Precondition: User has 2FA enabled with authenticator app
+Steps:
+  1. Enter valid email and password
+  2. Click "Sign In"
+  3. Enter 6-digit TOTP code from authenticator app
+  4. Click "Verify"
+Expected Result: User authenticated and redirected to dashboard
+Priority: P1
+Automation: Automated with TOTP library
+
+Test Case: TC-LOGIN-008
+Title: Session timeout after inactivity
+Precondition: User is logged in
+Steps:
+  1. Login successfully
+  2. Wait for 30 minutes without any activity
+  3. Attempt to navigate to a protected page
+Expected Result: Redirected to login page with message "Session expired. Please login again."
+Priority: P1
+Automation: Automated with mocked timers
+
+Test Case: TC-LOGIN-009
+Title: Concurrent session handling
+Precondition: User is logged in on Device A
+Steps:
+  1. Login with same credentials on Device B
+  2. Check session on Device A
+Expected Result: Both sessions active (our policy allows concurrent sessions), or Device A session invalidated (if single-session policy is enabled)
+Priority: P2
+Automation: Automated
+
+Test Case: TC-LOGIN-010
+Title: SQL injection prevention
+Precondition: None
+Steps:
+  1. Enter email: ' OR '1'='1
+  2. Enter password: ' OR '1'='1
+  3. Click "Sign In"
+Expected Result: Login fails with standard error message, no SQL error exposed, attempt logged in security audit
+Priority: P0
+Automation: Automated (security test suite)

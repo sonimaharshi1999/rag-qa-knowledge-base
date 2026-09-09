@@ -1,0 +1,83 @@
+======================================================================
+  rag qa knowledge base
+======================================================================
+
+Author: Maharshi Soni
+Category: qa-ai-automation
+Difficulty: advanced
+
+----------------------------------------------------------------------
+DESCRIPTION
+----------------------------------------------------------------------
+QA teams accumulate vast collections of test plans, runbooks, regression guides, and API documentation. Finding the right information quickly is a constant challenge. **RAG QA Knowledge Base** solves this by indexing your documents and letting you ask questions in plain English:
+
+----------------------------------------------------------------------
+TECH STACK
+----------------------------------------------------------------------
+  - fastapi
+  - uvicorn
+  - python-multipart
+  - jinja2
+  - scikit-learn
+  - numpy
+  - pytest
+  - httpx
+
+----------------------------------------------------------------------
+FEATURES
+----------------------------------------------------------------------
+
+----------------------------------------------------------------------
+SAMPLE INPUT
+----------------------------------------------------------------------
+  See README
+
+  Example:
+    See README
+
+----------------------------------------------------------------------
+SAMPLE OUTPUT
+----------------------------------------------------------------------
+  See README
+
+  Example:
+    See README
+
+----------------------------------------------------------------------
+PROJECT STRUCTURE
+----------------------------------------------------------------------
+  .gitignore
+  answer_generator.py
+  document_loader.py
+  LICENSE
+  main.py
+  README.md
+  requirements.txt
+  retriever.py
+  sample_docs/api_testing_runbook.md
+  sample_docs/cicd_pipeline_docs.md
+  sample_docs/login_test_cases.txt
+  sample_docs/payment_module_test_plan.md
+  sample_docs/regression_testing_guide.md
+  static/app.js
+  static/style.css
+  templates/index.html
+  tests/conftest.py
+  tests/test_answer_generator.py
+  tests/test_api.py
+  tests/test_document_loader.py
+  tests/test_retriever.py
+  tests/__init__.py
+  uploads/.gitkeep
+
+----------------------------------------------------------------------
+TEST RESULTS
+----------------------------------------------------------------------
+  Status: PASSED
+  Tests Run: 4
+  Passed: 4
+  Failed: 0
+
+======================================================================
+  Author: Maharshi Soni  |  License: MIT
+======================================================================

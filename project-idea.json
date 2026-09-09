@@ -1,0 +1,20 @@
+﻿{
+    "features":  [
+
+                 ],
+    "description":  "A retrieval-augmented generation system for QA teams. Upload test documentation and runbooks, ask natural language questions, get grounded answers with source citations. FastAPI backend with web frontend.",
+    "tech_stack":  [
+                       "fastapi",
+                       "uvicorn",
+                       "python-multipart",
+                       "jinja2",
+                       "scikit-learn",
+                       "numpy",
+                       "pytest",
+                       "httpx"
+                   ],
+    "difficulty":  "advanced",
+    "category":  "qa-ai-automation",
+    "title":  "RAG QA Knowledge Base",
+    "project_name":  "rag-qa-knowledge-base"
+}
