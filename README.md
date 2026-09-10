@@ -1,5 +1,7 @@
 # RAG QA Knowledge Base
 
+![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue.svg) ![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)
+
 A **Retrieval-Augmented Generation (RAG)** system designed for QA teams. Upload your test documentation, runbooks, and test plans, then ask natural-language questions and receive grounded answers with source citations. Built with scikit-learn TF-IDF retrieval, FastAPI, and a clean HTML frontend -- no paid APIs or GPU required.
 
 ---
